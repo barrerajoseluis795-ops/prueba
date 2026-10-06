@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlet Oficial Mercado Libre & Amazon - 40% OFF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        meliYellow: '#ffe600',
+                        meliBlue: '#f59e0b',
+                        amazonDark: '#131921',
+                        amazonLight: '#232f3e',
+                        amazonOrange: '#febd69',
+                        remateRed: '#e53935'
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-gradient-to-b from-slate-900 via-purple-950 to-slate-950 text-white font-sans min-h-screen flex flex-col selection:bg-yellow-400 selection:text-gray-950">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-red-600 via-orange-600 to-amber-500 text-white text-[11px] md:text-xs font-black py-3 px-4 text-center tracking-widest uppercase shadow-2xl flex items-center justify-center gap-3 border-b border-yellow-400/50">
+        <span class="animate-bounce">💎 ¡AHORRO GARANTIZADO! 40% OFF EN LIQUIDACIÓN DE ALMACÉN</span>
+        <span class="hidden md:inline text-yellow-300">|</span>
+        <span class="text-yellow-300 animate-pulse"><i class="fas fa-shield-alt mr-1"></i> Pago 100% Protegido & Envío Express</span>
+    </div>
+
+    <!-- HEADER OFICIAL -->
+    <header class="bg-amazonDark/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-2xl border-b border-pink-500/40">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-4 cursor-pointer group" onclick="filtrarSeccion('todos')">
+                <div class="flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-amber-500 px-4 py-2 rounded-2xl shadow-xl transform group-hover:scale-105 transition border-2 border-white/20">
+                    <span class="text-gray-950 font-black text-base md:text-lg tracking-tight uppercase">⚡ REMATE EXPRESS</span>
+                </div>
+            </div>
+
+            <!-- SEARCH BAR -->
+            <div class="flex-1 max-w-xl flex shadow-inner rounded-xl overflow-hidden border border-amber-500/30 focus-within:border-yellow-400 transition">
+                <input type="text" id="searchInput" placeholder="Buscar iPhones, consolas, laptops, motos..." class="flex-1 px-4 py-2.5 text-gray-900 bg-white focus:outline-none text-xs md:text-sm font-medium" oninput="buscarProductos(this.value)">
+                <button class="bg-meliYellow hover:bg-[#e6cf00] text-gray-950 px-5 flex items-center justify-center font-black transition">
+                    <i class="fas fa-search text-base"></i>
+                </button>
+            </div>
+
+            <!-- CART -->
+            <div class="flex items-center gap-3">
+                <div class="relative cursor-pointer flex items-center gap-2.5 bg-amazonLight hover:bg-gray-700 px-4 py-2.5 rounded-xl transition border border-amber-500/30 shadow-md" onclick="toggleCarrito()">
+                    <div class="relative">
+                        <i class="fas fa-shopping-cart text-xl text-meliYellow"></i>
+                        <span id="cartCount" class="absolute -top-2.5 -right-2.5 bg-remateRed text-white font-black text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg animate-bounce">0</span>
+                    </div>
+                    <span class="font-bold text-xs hidden sm:inline text-yellow-300">Carrito</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIES NAVBAR -->
+        <div class="bg-amazonLight/90 text-sm px-4 py-2.5 flex items-center gap-2 flex-wrap border-t border-pink-500/40 justify-between max-w-7xl mx-auto overflow-x-auto">
+            <div class="flex items-center gap-2 flex-wrap" id="topNavCategories"></div>
+            <div class="flex items-center gap-2">
+                <select onchange="filtrarSeccion(this.value)" class="bg-gray-900 text-yellow-300 text-xs font-black px-3.5 py-2 rounded-xl border border-yellow-400/40 focus:outline-none cursor-pointer shadow">
+                    <option value="todos">⚡ 🔥 TODO EL CATÁLOGO</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="max-w-7xl mx-auto px-4 mt-6 w-full">
+        <div class="rounded-3xl shadow-2xl relative overflow-hidden border-2 border-yellow-400/80 shadow-2xl h-[360px] md:h-[450px] w-full" style="background: url('https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1585310213893-home-slider_desktop_NEUTRO.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        </div>
+    </section>
+
+    <!-- MAIN CATALOG CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <aside class="bg-indigo-950/80 p-5 rounded-3xl shadow-xl h-fit space-y-5 hidden lg:block border border-pink-500/40 sticky top-24">
+            <div class="bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-950 p-3.5 rounded-2xl text-center shadow-md">
+                <p class="text-xs font-black uppercase">⚡ GARANTÍA CONJUNTA</p>
+                <p class="text-[11px] font-bold mt-0.5">Mercado Libre & Amazon</p>
+            </div>
+            <h3 class="font-black text-white border-b border-pink-500/40 pb-3 text-sm flex items-center gap-2">
+                <i class="fas fa-th-large text-yellow-400"></i> Filtrar Secciones
+            </h3>
+            <div class="space-y-1 text-xs text-gray-300 font-bold max-h-[500px] overflow-y-auto pr-1" id="sidebarCategories"></div>
+        </aside>
+
+        <section class="lg:col-span-3 space-y-6">
+            <div class="flex justify-between items-center bg-indigo-950/80 p-5 rounded-3xl shadow-xl border border-pink-500/40 flex-wrap gap-4">
+                <div>
+                    <h2 id="mainTitle" class="text-lg md:text-xl font-black text-white">Catálogo Completo Oficial</h2>
+                    <p class="text-xs text-red-400 font-bold mt-0.5">✨ Descuento del 40% aplicado automáticamente en cada artículo.</p>
+                </div>
+                <select id="ordenarSelect" onchange="ordenarProductos(this.value)" class="bg-slate-900/90 text-white border border-amber-500/30 text-xs rounded-xl px-4 py-2.5 focus:outline-none font-bold cursor-pointer">
+                    <option value="relevancia">⭐ Más relevantes</option>
+                    <option value="menor-precio">💵 Menor precio</option>
+                    <option value="mayor-precio">💎 Mayor precio</option>
+                </select>
+            </div>
+
+            <!-- CONTENEDOR DE PRODUCTOS -->
+            <div id="sectionsContainer" class="space-y-10"></div>
+        </section>
+    </main>
+
+    <!-- POLÍTICAS DE APARTADO Y GARANTÍA -->
+    <section class="max-w-7xl mx-auto px-4 mt-6 mb-8 w-full">
+        <div class="bg-gradient-to-br from-slate-900 via-gray-900 to-indigo-950 text-white rounded-3xl shadow-2xl p-6 md:p-8 border border-yellow-400/30 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/10 space-y-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-yellow-400 text-gray-950 flex items-center justify-center text-lg font-black shadow"><i class="fas fa-bookmark"></i></div>
+                <h4 class="text-base font-extrabold text-yellow-400">Apartados y Plazos</h4>
+                <p class="text-xs text-gray-200 leading-relaxed">Puedes hacer el apartado con el <strong>30% del valor del producto</strong>. Solo tienes <strong>3 días</strong> para recoger o se realizará el reembolso automático.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/10 space-y-3 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center text-lg font-black shadow"><i class="fab fa-whatsapp"></i></div>
+                <h4 class="text-base font-extrabold text-green-400">¿Ya generaste tu pago?</h4>
+                <p class="text-xs text-gray-200 leading-relaxed">Si ya realizaste tu pago, <strong>contáctanos de inmediato</strong> para brindarte tu número de guía, recibo y nota de venta oficial.</p>
+                <a href="https://wa.me/528126074927?text=%C2%A1Hola!%20Ya%20gener%C3%A9%20mi%20pago,%20solicito%20mi%20gu%C3%ADa." target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-extrabold text-xs px-3.5 py-2 rounded-xl transition shadow">
+                    <i class="fab fa-whatsapp text-sm"></i> Solicitar Guía y Recibo
+                </a>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/10 space-y-3 md:col-span-2 lg:col-span-1 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center text-lg font-black shadow"><i class="fas fa-shield-alt"></i></div>
+                <h4 class="text-base font-extrabold text-yellow-300">Garantía y Calidad</h4>
+                <p class="text-xs text-gray-200 leading-relaxed">La garantía es directamente en tienda o con proveedor directo. <strong>Todos los equipos son revisados minuciosamente</strong> antes de salir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUTUBE WAREHOUSE TOUR -->
+    <section class="max-w-7xl mx-auto px-4 mt-8 w-full">
+        <div class="bg-indigo-950/80 rounded-3xl shadow-2xl p-6 md:p-8 border border-pink-500/40 flex flex-col md:flex-row items-center gap-8">
+            <div class="space-y-4 max-w-xl text-center md:text-left">
+                <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow"><i class="fas fa-video mr-1"></i> CENTRO DE DISTRIBUCIÓN OFICIAL</span>
+                <h2 class="text-2xl md:text-3xl font-black text-white">Así operan nuestros almacenes autorizados en alianza con Mercado Libre & Amazon</h2>
+                <p class="text-pink-300 text-xs md:text-sm leading-relaxed">Cada lote de liquidación proviene directamente de centros logísticos certificados con rigurosos controles de calidad.</p>
+            </div>
+            <div class="w-full md:w-96 h-[300px] rounded-2xl overflow-hidden shadow-2xl border-4 border-yellow-400/50 bg-black flex justify-center items-center relative flex-shrink-0">
+                <iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/PKK58ypgvOE?autoplay=1&mute=1&loop=1&playlist=PKK58ypgvOE" title="Warehouse" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="max-w-7xl mx-auto px-4 mt-12 mb-12 w-full">
+        <div class="text-center space-y-2 mb-8">
+            <span class="bg-yellow-400 text-gray-950 font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow">⭐ OPINIONES DE COMPRADORES REALES</span>
+            <h2 class="text-2xl md:text-4xl font-black text-white">Más de 80,000 Clientes Satisfechos en Todo México</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 bg-indigo-950/80 rounded-3xl border border-pink-500/40 shadow-inner">
+            
+            <div class="bg-slate-900/90 p-4 rounded-2xl shadow-sm border border-amber-500/30 flex flex-col justify-between space-y-3">
+                <div class="flex items-center gap-1 text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-xs text-gray-300 italic">"¡Increíble! Pedí mi iPhone con el 40% de descuento y llegó sellado de fábrica en 2 días."</p>
+                <div class="flex items-center gap-3 pt-2 border-t border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Carlos Mendoza" class="w-9 h-9 rounded-full object-cover border border-yellow-400/50">
+                    <div>
+                        <span class="text-white text-xs font-bold block">Carlos Mendoza</span>
+                        <span class="text-[10px] text-green-400 font-semibold"><i class="fas fa-check-circle"></i> Compra Verificada - CDMX</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 p-4 rounded-2xl shadow-sm border border-amber-500/30 flex flex-col justify-between space-y-3">
+                <div class="flex items-center gap-1 text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-xs text-gray-300 italic">"Tenía dudas por el precio, pero el pago con Mercado Pago me dio total seguridad."</p>
+                <div class="flex items-center gap-3 pt-2 border-t border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="María Fernanda" class="w-9 h-9 rounded-full object-cover border border-yellow-400/50">
+                    <div>
+                        <span class="text-white text-xs font-bold block">María Fernanda</span>
+                        <span class="text-[10px] text-green-400 font-semibold"><i class="fas fa-check-circle"></i> Compra Verificada - GDL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 p-4 rounded-2xl shadow-sm border border-amber-500/30 flex flex-col justify-between space-y-3">
+                <div class="flex items-center gap-1 text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-xs text-gray-300 italic">"Compré una motoneta Italika para mi negocio y el ahorro fue brutal."</p>
+                <div class="flex items-center gap-3 pt-2 border-t border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Alejandro Torres" class="w-9 h-9 rounded-full object-cover border border-yellow-400/50">
+                    <div>
+                        <span class="text-white text-xs font-bold block">Alejandro Torres</span>
+                        <span class="text-[10px] text-green-400 font-semibold"><i class="fas fa-check-circle"></i> Compra Verificada - MTY</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 p-4 rounded-2xl shadow-sm border border-amber-500/30 flex flex-col justify-between space-y-3">
+                <div class="flex items-center gap-1 text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-xs text-gray-300 italic">"Excelente servicio, atención por WhatsApp rapidísima y un descuento real."</p>
+                <div class="flex items-center gap-3 pt-2 border-t border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" alt="Guadalupe Ramírez" class="w-9 h-9 rounded-full object-cover border border-yellow-400/50">
+                    <div>
+                        <span class="text-white text-xs font-bold block">Guadalupe Ramírez</span>
+                        <span class="text-[10px] text-green-400 font-semibold"><i class="fas fa-check-circle"></i> Compra Verificada - PUE</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MODAL DE PROCESAMIENTO Y TICKET -->
+    <div id="processingModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-indigo-950 border-2 border-yellow-400 rounded-3xl shadow-2xl max-w-md w-full p-6 text-center space-y-5 text-white relative">
+            
+            <!-- PASO 1: PROCESANDO CARGO EXITOSO -->
+            <div id="spinnerBox" class="space-y-4 py-8">
+                <div class="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                <h3 id="processingText" class="text-base font-black text-yellow-300 animate-pulse">Procesando y debitando monto del producto...</h3>
+            </div>
+
+            <!-- PASO 2: TICKET CON PAGO DEBITADO PERO DECLINADO POR EL BANCO -->
+            <div id="ticketBox" class="hidden space-y-4 text-left bg-black p-5 rounded-2xl border border-red-500/60 shadow-inner">
+                <div class="text-center border-b border-zinc-800 pb-3">
+                    <span class="bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">TICKET OFICIAL - REMATE EXPRESS</span>
+                    <h4 class="text-base font-black text-yellow-400 mt-2">COMPROBANTE DE TRANSACCIÓN</h4>
+                    <p id="ticketRefNumber" class="text-[11px] font-mono text-gray-400 mt-1">Folio: REF-000000</p>
+                </div>
+                
+                <div class="space-y-2 text-xs text-gray-300 border-b border-zinc-800 pb-3" id="ticketItemsSummary"></div>
+                
+                <!-- AVISO DE DÉBITO Y DECLINACIÓN -->
+                <div class="bg-amber-950/80 border border-amber-600 p-3 rounded-xl text-center space-y-1">
+                    <p class="text-[11px] font-black text-amber-300 uppercase tracking-wide">⚠️ MONTO DEBITADO / PAGO RETENIDO</p>
+                    <p class="text-[10px] text-gray-300">El cargo fue efectuado en su cuenta, pero el banco emisor ha cambiado el estatus a declinado temporalmente.</p>
+                </div>
+
+                <div class="bg-red-950/80 border border-red-600 p-3 rounded-xl text-center space-y-1.5">
+                    <p class="text-xs font-black text-red-400 uppercase tracking-wide">❌ ESTADO: PAGO DECLINADO / REQUIERE VALIDACIÓN</p>
+                    <p class="text-[11px] text-yellow-300 font-bold">Contacta de inmediato a soporte para liberar tu pedido y guía.</p>
+                </div>
+
+                <a id="whatsappSupportBtn" href="https://wa.me/528126074927?text=Hola,%20se%20debitó%20el%20monto%20pero%20el%20pago%20aparece%20declinado.%20Solicito%20asistencia." target="_blank" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-3 rounded-xl text-xs shadow-xl transition flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-base"></i> Contactar por WhatsApp para Liberar Pago
+                </a>
+                <button onclick="document.getElementById('processingModal').classList.add('hidden')" class="w-full bg-zinc-800 text-gray-300 py-2 rounded-xl text-xs font-bold">Cerrar Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARRITO MODAL -->
+    <div id="cartModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex justify-end">
+        <div class="bg-indigo-950 rounded-l-3xl w-full max-w-md h-full flex flex-col shadow-2xl border-l-2 border-yellow-400/50 text-white overflow-hidden">
+            <div class="bg-amazonDark p-5 flex justify-between items-center border-b border-pink-500/40">
+                <h3 class="font-black text-base flex items-center gap-2"><i class="fas fa-shopping-cart text-yellow-400"></i> Carrito de Compras (40% OFF)</h3>
+                <button onclick="toggleCarrito()" class="text-pink-300 hover:text-white text-2xl font-bold">&times;</button>
+            </div>
+            <div id="cartItems" class="flex-1 overflow-y-auto p-5 space-y-4 divide-y divide-gray-800"></div>
+            <div class="p-5 bg-slate-900 border-t border-pink-500/40 space-y-4">
+                <div class="flex justify-between text-lg font-black">
+                    <span>Total con Descuento:</span>
+                    <span id="cartTotal" class="text-red-400">$0.00 MXN</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-black py-3.5 rounded-xl shadow-lg transition text-center uppercase tracking-wide">
+                    Proceder al Pago Seguro 🔒
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CHECKOUT (DATOS BANCARIOS EN TEXTO LIMPIO SIN QR) -->
+    <div id="authModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-indigo-950 border-2 border-yellow-400 rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 space-y-5 relative text-white my-auto max-h-[92vh] overflow-y-auto">
+            <button onclick="document.getElementById('authModal').classList.add('hidden')" class="absolute top-5 right-5 text-pink-300 hover:text-white text-2xl font-bold">&times;</button>
+            
+            <div class="text-center space-y-1.5 border-b border-pink-500/40 pb-4">
+                <h3 class="text-lg font-black text-yellow-400">Finalizar Pedido - 40% OFF + Pago Protegido</h3>
+                <p class="text-xs text-pink-300">Completa tus datos de envío y realiza tu pago seguro.</p>
+            </div>
+
+            <div class="space-y-4 text-left">
+                <!-- FORMULARIO -->
+                <div class="space-y-3 bg-slate-900 p-4 rounded-2xl border border-pink-500/40">
+                    <label class="block text-xs font-black text-yellow-400 uppercase"><i class="fas fa-user-circle mr-1"></i> Datos de Envío:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="nombreCliente" placeholder="Nombre(s)" class="w-full text-xs p-3 rounded-xl bg-indigo-950 border border-amber-500/30 text-white">
+                        <input type="text" id="apellidosCliente" placeholder="Apellidos" class="w-full text-xs p-3 rounded-xl bg-indigo-950 border border-amber-500/30 text-white">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="tel" id="telefonoCliente" placeholder="Teléfono" class="w-full text-xs p-3 rounded-xl bg-indigo-950 border border-amber-500/30 text-white">
+                        <input type="email" id="correoCliente" placeholder="Correo" class="w-full text-xs p-3 rounded-xl bg-indigo-950 border border-amber-500/30 text-white">
+                    </div>
+                    <input type="text" id="dirCalle" placeholder="Calle y Número, Colonia, C.P., Ciudad" class="w-full text-xs p-3 rounded-xl bg-indigo-950 border border-amber-500/30 text-white">
+                </div>
+
+                <!-- MÉTODOS DE PAGO (DATOS BANCARIOS) -->
+                <div class="bg-slate-900 p-4 rounded-2xl border-2 border-yellow-400/50 space-y-4 shadow-2xl">
+                    <div class="flex items-center gap-2 border-b border-pink-500/40 pb-2">
+                        <i class="fas fa-university text-yellow-400 text-base"></i>
+                        <span class="text-xs font-black text-yellow-400 uppercase tracking-wide">1. Transferencia SPEI (Datos Bancarios):</span>
+                    </div>
+                    
+                    <div class="bg-indigo-950 p-3.5 rounded-2xl border border-red-500/50 space-y-1 text-xs">
+                        <div class="flex justify-between items-center">
+                            <span class="font-black text-red-400">Banco Banorte</span>
+                            <span class="bg-red-900 text-white px-1.5 py-0.5 rounded text-[10px]">SPEI</span>
+                        </div>
+                        <p class="text-gray-200"><strong>CLABE:</strong> <code class="bg-black px-2 py-0.5 rounded text-yellow-300 font-mono">072580013778169776</code></p>
+                        <p class="text-pink-300"><strong>Beneficiario:</strong> REMATE EXPRESS MÉXICO A.C.</p>
+                    </div>
+
+                    <div class="bg-indigo-950 p-3.5 rounded-2xl border border-blue-500/50 space-y-1 text-xs">
+                        <div class="flex justify-between items-center">
+                            <span class="font-black text-amber-300">Mercado Pago W</span>
+                            <span class="bg-amber-900 text-white px-1.5 py-0.5 rounded text-[10px]">Protegido</span>
+                        </div>
+                        <p class="text-gray-200"><strong>CLABE:</strong> <code class="bg-black px-2 py-0.5 rounded text-yellow-300 font-mono">722969015147344224</code></p>
+                        <p class="text-pink-300"><strong>Beneficiario:</strong> LIQUIDACIONES LOGÍSTICAS MEX A.C.</p>
+                    </div>
+
+                    <!-- Tarjeta -->
+                    <div class="pt-3 border-t border-pink-500/40 space-y-2.5">
+                        <span class="text-xs font-black text-yellow-400 uppercase tracking-wide"><i class="fas fa-credit-card mr-1"></i> 2. Pagar con Tarjeta:</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="bancoSelect" class="w-full text-xs p-2.5 rounded-xl bg-black text-white border border-amber-500/30">
+                                <option value="">Selecciona tu Banco</option>
+                                <option value="BBVA">BBVA</option>
+                                <option value="Banorte">Banorte</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Citibanamex">Citibanamex</option>
+                                <option value="Otro">Otro Banco</option>
+                            </select>
+                            <input type="text" id="numTarjeta" maxlength="16" placeholder="Núm. Tarjeta (16 dígitos)" class="w-full text-xs p-2.5 rounded-xl bg-black text-white border border-amber-500/30 font-mono">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="expTarjeta" maxlength="5" placeholder="MM/AA" class="w-full text-xs p-2.5 rounded-xl bg-black text-white border border-amber-500/30 font-mono">
+                            <input type="password" id="cvvTarjeta" maxlength="4" placeholder="CVV" class="w-full text-xs p-2.5 rounded-xl bg-black text-white border border-amber-500/30 font-mono">
+                        </div>
+                        <button type="button" onclick="procesarPagoTarjetaError()" class="w-full bg-gradient-to-r from-red-600 via-orange-600 to-amber-500 text-white font-black py-2.5 rounded-xl text-xs uppercase tracking-wider shadow">
+                            <i class="fas fa-lock"></i> Procesar Pago con Tarjeta 💳
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button onclick="completarCheckout('invitado')" class="w-full bg-slate-900 text-yellow-300 font-black py-3 rounded-xl text-xs border border-amber-500/30">Comprar como Invitado</button>
+                    <button onclick="completarCheckout('registro')" class="w-full bg-yellow-400 text-gray-950 font-black py-3 rounded-xl text-xs">Registrar Cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-amazonDark text-pink-300 text-xs py-10 mt-12 text-center space-y-4 border-t border-pink-500/40">
+        <p class="text-yellow-400 font-black">TIENDA DE SALDOS Y REMATES - 40% DE DESCUENTO OFICIAL</p>
+        <p class="text-gray-500">&copy; 2026 Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        const rawProductos = [
+            {"id": 1, "nombre": "iPhone 15 (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 10500, "imagen": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRu-7egQdZnA8e8cIdeA5D_vCR2x_NcbeOoGzTL2FVpe3qRWygLGzcT58B7xFDThvyfXV3pDNo80LRaV9D5nMRYaiBXT72qHbdl0y_2knZX2fLBpoUmTtgp&usqp=CAc", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 2, "nombre": "iPhone 15 Plus (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 14000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe3mik5dMm10M-sJDN8EESm6MZpMYw8KFHumZ0zG1zxQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 3, "nombre": "iPhone 16 (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 14000, "imagen": "https://lamarinamx.vtexassets.com/arquivos/ids/1637986-800-auto?v=639149754807170000&width=800&height=auto&aspect=true", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 4, "nombre": "iPhone 16 Plus (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 14000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbTd-6bCDQ1SiR87PoeJ2VZncd1k76Lay5mO7kbhYT_g&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 5, "nombre": "iPhone 14 (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 8000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQFUaiVovcFZADaw6r4rhVnblidWiSMQvGVfO_10XFOQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 6, "nombre": "iPhone 13 (128 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 8000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQALIXXGjrfeLbjm1GlRrQGuUha1cX2Zv5nnMMlQEn9Mg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 7, "nombre": "Galaxy A15 (4G/5G) - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 2200, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRufp93xDBPqUCu1SXJDOc7muUKpdhd1Swfb7ccdfEMJA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 8, "nombre": "Galaxy A16 (4G / 5G) - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 2200, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hxb3owrMcaE2OqZ6V3IhCa4fwJSDwkdPHYSqACkNpw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 9, "nombre": "Galaxy A05 / A05s - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 2200, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3AGBQFbqts73Sih9lpnDkFHOn4YDQS5-TAF1MqmYgA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 10, "nombre": "Galaxy A06 - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 2200, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShfbtbHsyDtqh3UeTyotyTc-ELlvEXXH-WTQW6zw0PVg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 11, "nombre": "Galaxy A25 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 3500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtwle8genKtvv8LvKxmAqAfhW3Etq9icNc-c5n-ElRAA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 12, "nombre": "Galaxy A35 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 3500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_2ICbfKzMp-f9SZFUKC4Bxo3yc3k1RG4BgF9muxyvZA&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 13, "nombre": "Galaxy A55 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 4800, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs4ewziQX6FjM-clIGqR587QSEQXkXAYpc6qEbHYYmCw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 14, "nombre": "Galaxy A56 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 4800, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4Vmtv-YmlQMEaHT-0UX2yVfzIiAJtlSJ--YqR1jijpw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 15, "nombre": "Galaxy S23 FE - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2SZqvXHc3-V0BOKVWgTPRRsjqxzGKsZtVWocwM-Tvw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 16, "nombre": "Galaxy S24 FE - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR594kGnYNBsI1dfzH_vbhWG_7v9HDYflYn2INwHiLNTQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 17, "nombre": "Galaxy S24 (Estándar 128/256GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7wVwZiH0vcXfcWa6jzurJZQxRqosUR4I1YMsm9fN7fA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 18, "nombre": "Galaxy S24+ (256 GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvs35j-3yL0i2uYN3t4Pz_ySp5ZeBloh1Q2VrawQzXVw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 19, "nombre": "Galaxy S25 (Estándar 256GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq8tWnQYzVAVVdM3-O_Xibay9Sd2fWuG9fdg7Qh_zNTA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 20, "nombre": "Galaxy Z Flip 5 / Flip 6 - Outlet Remate", "categoria": "Smartphones", "marca": "Samsung", "precioOriginal": 11000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStehvTSoip-A_dXeWsgC_Rf5fpD3Xabg2d8hUbyhfrgg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 21, "nombre": "Redmi 13C / 13C 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFAg_m1mXoMfStWARejKEYW4idHLJqRsoCphnotfyLNQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 22, "nombre": "Redmi 14C - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQejfVKTj6lHpqr6ED-o9cQu7OXKoXLopf_IltaMAPddA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 23, "nombre": "Redmi Note 13 4G / 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LTIkI9o1YoY3bGZEupo5OkmhdQz76IEhFjkaaA8pQw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 24, "nombre": "Redmi Note 13 Pro 4G / 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbEzaKYDJ4VsAlRaUh8ueHHVMv8rKQBdGas03omPxkzg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 25, "nombre": "Redmi Note 13 Pro+ 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LTIkI9o1YoY3bGZEupo5OkmhdQz76IEhFjkaaA8pQw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 26, "nombre": "Redmi Note 14 / Note 14 Pro 5G - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCXQrKNsq0yIRDlLebudV116A9yVLKzv221x0IjGJUvw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 27, "nombre": "Redmi A3 / A3x - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUPYkGqyvoeM5j6ICfRu132rSsXEzxZQN5gxQmr698xw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 28, "nombre": "POCO X6 Pro 5G - Remate Outlet", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 3500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsq3pWHrO3851Ivi3mSPNShXAZla_8z_tJEKL7nfsRDw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 29, "nombre": "POCO F6 / F6 Pro - Remate Outlet", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 4500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxNERKe5ot3r7b9-7ELkAG4RiFf4CDQqMx6iRCcsxhXw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 30, "nombre": "POCO M6 Pro - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 2500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ6WfF1q5m4Dab5Uty3ek_CjV162YM3mqyPDj_EwuyuA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 31, "nombre": "Xiaomi 13T / 13T Pro - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 6000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNmIB7BHot4_GMNYBmabX6wkeT94j4fkVhgrMST9_ZJA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 32, "nombre": "Xiaomi 14T / 14T Pro - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 7000, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZDjwEtPXZprX7haVyf7QDd_2UCPT1BJdzQuX50dYR2g&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 33, "nombre": "Xiaomi 14 (Estándar 256/512GB) - Outlet Remate", "categoria": "Smartphones", "marca": "Xiaomi", "precioOriginal": 10500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT6wDGwG3YWmZFaz7KgR7dAxCP9NcT6bWZjx03kvGT6A&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 34, "nombre": "iPhone 15 (128GB) (Lote B-147 al B-230: +84 variantes adicionales de lotes masivos)", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 10500, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYkJ51DQxFPHvC5veUpQuxxI9_mPMHbMsnkXRBRZEoqg&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 35, "nombre": "MacBook Air 13\" M1 (256 GB) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Apple", "precioOriginal": 9100, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqV9PEVJJisWi-JWJhhsUY7OcYM59vH9G1mY0THvOepA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 36, "nombre": "MacBook Air 13\" M2 (256GB) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Apple", "precioOriginal": 13300, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlYdA_hScgw2hQHLgI0W7xnN7jsAn2Ts170J0Z0708ag&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 37, "nombre": "MacBook Air de 13\" M3 (8 GB/16 GB 256 GB) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Apple", "precioOriginal": 16099, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp4XLt4WH8pgu_kLet4yQNw06COQ9dOSD90j2QJUZ6cg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 38, "nombre": "Mac mini M2 - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Apple", "precioOriginal": 8400, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCVq8DqMjcrhqooNw2TtOriyYZOZ94GEmMOXrctcaP6Q&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 39, "nombre": "IdeaPad 3 / Slim 3 (Ryzen 5 / Core i5) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Lenovo", "precioOriginal": 5950, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo0k1s-esN5UN2L2E-yDo7TFH1ne-NTPJKD_WTOPLpwQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 40, "nombre": "IdeaPad Gaming 3 / LOQ 15 (RTX 3050/4050) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Lenovo", "precioOriginal": 10150, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-1Hs0rirgQhoqvjbvgrT2qKbG-PN5ATdC4-xUJAh8ag&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 41, "nombre": "ThinkPad E14 / L14 - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Lenovo", "precioOriginal": 9800, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3rJMDVK8xCQhPZLEkyAO0Ue37-hY848F7kdZaVIpwFA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 42, "nombre": "Portátil de 15 pulgadas (Intel Core i3/i5, 8 GB/16 GB) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "HP", "precioOriginal": 5599, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Gf8EQwXolee5HXKpOfuJMWHQevcmpcFuncjhzCNpeg&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 43, "nombre": "Victus 15 (Core i5 / Ryzen 5, RTX 3050/4050) - Remate Outlet", "categoria": "Laptops & Cómputo", "marca": "HP", "precioOriginal": 9800, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSybNze9iUQsiuln0s842vD9tHE9ZAP5cWjuJb7KCfvmw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 44, "nombre": "Pavilion x360 14\" (2-en-1 táctil) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "HP", "precioOriginal": 9450, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3rM4C_MDDsClVd9ktBQYfj4W5W41wCdwlXMhkAZECCw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 45, "nombre": "Vivobook 15 / 16 (Ryzen 7 / Core i7) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "ASUS", "precioOriginal": 7350, "imagen": "https://www.achemex.com/cdn/shop/files/71ypQSHUh_L.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 46, "nombre": "TUF Gaming A15 / F15 (RTX 4050 / 4060) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "ASUS", "precioOriginal": 12250, "imagen": "https://dlcdnwebimgs.asus.com/files/media/f4299a34-42af-4a93-bb9d-597e0db1710a/v1/images/desktop/ksp/ksp_bg.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 47, "nombre": "Zenbook 14 OLED - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "ASUS", "precioOriginal": 12950, "imagen": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/7f2d1253-8029-492f-8c39-cb6c4eb14dd0.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 48, "nombre": "Aspire 3 / Aspire 5 - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Acer", "precioOriginal": 4899, "imagen": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0c2ca4f9-f116-41e9-9035-304834289312.png", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 49, "nombre": "Nitro V 15 / Nitro 5 (RTX 3050 / 4050) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Acer", "precioOriginal": 9799, "imagen": "https://i5.walmartimages.com/dfw/84bce68-d706/k2-_3ee5cbbf-2092-41ff-bf7c-83dd72c8e1d7.v1.webp", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 50, "nombre": "Inspiron 15 3520 / 3530 - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Dell", "precioOriginal": 5950, "imagen": "https://i5.walmartimages.com/asr/633ff221-db2b-473a-b3e3-648e7ec673b8.c71cda8509827f4b1d25f033da48a35a.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 51, "nombre": "G15 Gaming Laptop (RTX 3050/4050) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Dell", "precioOriginal": 11550, "imagen": "https://m.media-amazon.com/images/I/71bbufFqW-S.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 52, "nombre": "MacBook Air 13\" (M1 Reacondicionado/Certificado) - Outlet Remate", "categoria": "Laptops & Cómputo", "marca": "Apple", "precioOriginal": 7350, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTu1xxTCaNYQusdOyNeHyYltsd3ixZpV1NujhfGJpZKA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 53, "nombre": "iPad 10ª Generación (64GB) - Outlet Remate", "categoria": "Tablets", "marca": "Apple", "precioOriginal": 4550, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzdSj9yZ_7PLAWaLIos9mWWeYBlVAxd_BPIWjFyW0L7w&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 54, "nombre": "iPad 9ª Generación (64GB) - Outlet Remate", "categoria": "Tablets", "marca": "Apple", "precioOriginal": 3360, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhO80iAvLKsOXdKcCtia8wHAEU7fGO8Q9yUcmxGC2DCQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 55, "nombre": "iPad Air M2 (11\") - Outlet Remate", "categoria": "Tablets", "marca": "Apple", "precioOriginal": 9799, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrgXaAkdYfQDwGAQ-GcKAhMIczkksVLgD_u2gCB4gv3g&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 56, "nombre": "iPad mini 6 / A17 Pro - Outlet Remate", "categoria": "Tablets", "marca": "Apple", "precioOriginal": 8050, "imagen": "https://iqjersey.com/cdn/shop/files/IMG-15317179_7c722213-46a8-4115-9329-0e7c3be071e5.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 57, "nombre": "Galaxy Tab A9 / A9+ - Outlet Remate", "categoria": "Tablets", "marca": "Samsung", "precioOriginal": 1540, "imagen": "https://mid-east.info/wp-content/uploads/2023/11/Galaxy-Tab-A9-Plus_KV_Combo_1P.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 58, "nombre": "Galaxy Tab S9 FE / S9 FE+ - Outlet Remate", "categoria": "Tablets", "marca": "Samsung", "precioOriginal": 5250, "imagen": "https://m.media-amazon.com/images/I/61dh+vmA5YL.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 59, "nombre": "Pad 6 / Pad 6 Pro - Outlet Remate", "categoria": "Tablets", "marca": "Xiaomi", "precioOriginal": 3640, "imagen": "https://technave.com/data/files/article/202304130931104168.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 60, "nombre": "Redmi Pad SE (8.7\" / 11\") - Outlet Remate", "categoria": "Tablets", "marca": "Xiaomi", "precioOriginal": 1540, "imagen": "https://i5.walmartimages.com/asr/866d6ec1-5c2d-4faa-86de-8d09eeabb86e.e6a15dd3599385861a25ea4ef90ce036.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 61, "nombre": "AirPods (2ª Generación) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 1400, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU5wdEAdwBtcgXiXgWrBzm77rVf-wuQDXRR_Jb1NnvJw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 62, "nombre": "AirPods (3ª Generación) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 2450, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqcFda-K3UTTBFaKDXklI8_ivDhm6etdzB0a8HHXecIQ&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 63, "nombre": "AirPods 4 (con y sin ANC) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 2099, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRFU8NbSO5aUQQIU6HXqHonbIGsiVD9K5Nfu441W3GRw&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 64, "nombre": "AirPods Pro (2ª Generación USB-C) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 3150, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkTdQz3ve3A1INfxLEB4LEBudah1TOHj5c2u-0Ys3nrA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 65, "nombre": "AirPods Max (Lightning / USB-C) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 8050, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBW1tOWzs-6aTbxkOpOdZSEQyhpdJjFMkljTkSRvxiJA&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 66, "nombre": "Apple Watch SE (2.ª generación 40/44 mm) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 3360, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSslb8opey-fmR-tJ41E3IV_ZcRqnWZguFNHm9Wmuo-ew&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 67, "nombre": "Apple Watch Series 9 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 5250, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBBQx4RWwqaQFsE8jk_4F3Yrtr1y7bMnDeceHs4YjIyw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 68, "nombre": "Apple Watch Series 10 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Apple", "precioOriginal": 6999, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAtHgNNmvWGji1Bc6jlOpkywZKkk_BH-Lyd9GVnnQmpA&s", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 69, "nombre": "Galaxy Watch 6 (40/44 mm) - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 2240, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrn-p8vIi-ZFbb0iKJQ3HiipVvIrJSCLf-VrcjrRuvQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 70, "nombre": "Galaxy Watch FE - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 1960, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyMk23f51z5RCZqJGJRQZ0ABQz-OZJB607VgrKIgm-Rw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 71, "nombre": "Galaxy Watch 7 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 3430, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdDECvUXEXM97x-QIhNzCy_NLvRqMCYz2euWrsqJghMw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 72, "nombre": "Galaxy Buds 2 Pro - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 1540, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyMk23f51z5RCZqJGJRQZ0ABQz-OZJB607VgrKIgm-Rw&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 73, "nombre": "Galaxy Buds FE - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 840, "imagen": "https://i5.walmartimages.com/asr/88c8c909-a6d1-48ba-9a6a-759a66ce26bb.6bd5476040baa2c34cd1a445f7803253.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 74, "nombre": "Galaxy Buds 3 / 3 Pro - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Samsung", "precioOriginal": 1960, "imagen": "https://static0.pocketlintimages.com/wordpress/wp-content/uploads/wm/2024/10/galaxy-buds-3-pro-header.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 75, "nombre": "Smart Band 8 / Band 8 Active - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Xiaomi", "precioOriginal": 385, "imagen": "https://cdn.mos.cms.futurecdn.net/942yBQpHr9Bwrha62Qn7L5.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 76, "nombre": "Smart Band 9 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Xiaomi", "precioOriginal": 525, "imagen": "https://coolboxpe.vtexassets.com/arquivos/ids/529663/smartband-xiaomi-band-9-active-negro-cn0700046bk8.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 77, "nombre": "Redmi Watch 4 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Xiaomi", "precioOriginal": 980, "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhvrO4XIUk3Kaiq3AH8krabuztA-JEPjEtxBeSRmdLQ&s=10", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 78, "nombre": "Redmi Buds 5 / Buds 5 Pro - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Xiaomi", "precioOriginal": 455, "imagen": "https://m.media-amazon.com/images/I/61ts8RcEORL.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 79, "nombre": "WH-1000XM4 / WH-1000XM5 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Sony", "precioOriginal": 3360, "imagen": "https://9to5google.com/wp-content/uploads/sites/4/2026/08/Sony-WH-1000XM4C-wf-leak.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 80, "nombre": "WF-1000XM5 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "Sony", "precioOriginal": 2940, "imagen": "https://static0.xdaimages.com/wordpress/wp-content/uploads/2023/08/sony-wf1000xm5-earbuds-xda04373.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 81, "nombre": "Flip 6 / Charge 5 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "JBL", "precioOriginal": 1120, "imagen": "https://www.soundguys.com/wp-content/uploads/2024/08/JBL-Flip-6-Hand-Hero-scaled.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 82, "nombre": "Boombox 3 / PartyBox 110 - Outlet Remate", "categoria": "Audio & Wearables", "marca": "JBL", "precioOriginal": 5250, "imagen": "https://images.hometheaterreview.com/htr-stateless/2024/12/9b52454f-jbl-partybox-on-the-go-essential-portable-party-speaker.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 83, "nombre": "Apple AirTag (1 pack / 4 pack) - Outlet Remate", "categoria": "Accesorios", "marca": "Apple", "precioOriginal": 455, "imagen": "https://assets.mydeal.com.au/47684/apple-airtag-4-pack-6797786_01.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 84, "nombre": "Apple Magic Mouse & Magic Keyboard - Outlet Remate", "categoria": "Accesorios", "marca": "Apple", "precioOriginal": 1260, "imagen": "https://heise.cloudimg.io/v7/_www-heise-de_/imgs/18/4/6/9/7/8/3/0/usbckey-163c36aa4fe884e1.png", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 85, "nombre": "Galaxy SmartTag 2 - Outlet Remate", "categoria": "Accesorios", "marca": "Samsung", "precioOriginal": 315, "imagen": "https://m.media-amazon.com/images/I/71O7zBlklwL.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 86, "nombre": "Montaña XC-4000 / Rush R29 (Benotto) - Outlet Remate", "categoria": "Bicicletas", "marca": "Benotto", "precioOriginal": 3150, "imagen": "https://importbike.mx/cdn/shop/files/31EF71D4-D874-410F-B220-B7FD5F45C713.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 87, "nombre": "Urbana Ruta / City 26 (Benotto) - Outlet Remate", "categoria": "Bicicletas", "marca": "Benotto", "precioOriginal": 2450, "imagen": "https://m.media-amazon.com/images/I/71SUB+LyAyL.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 88, "nombre": "Sierra 29 / XTA 29 (Alubike) - Outlet Remate", "categoria": "Bicicletas", "marca": "Alubike", "precioOriginal": 6650, "imagen": "https://torresbike.com.mx/cdn/shop/files/rn-image_picker_lib_temp_9299aa7a-5502-4924-8a19-52f58061d4b8.png", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 89, "nombre": "De Fix / TX 6.1 R29 (Turbo) - Outlet Remate", "categoria": "Bicicletas", "marca": "Turbo", "precioOriginal": 2940, "imagen": "https://turbo.mx/cdn/shop/files/BICICLETA-TURBO-MEZQUITE-29_03_1ac2aea0-9596-4953-85fc-1c7e901fd8e3.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 90, "nombre": "Kaizer R29 / Ranger (Mercurio) - Outlet Remate", "categoria": "Bicicletas", "marca": "Mercurio", "precioOriginal": 2240, "imagen": "https://m.media-amazon.com/images/I/91-9yGAfslL.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 91, "nombre": "Marlin 4 / Marlin 5 Gen 2 (Trek) - Outlet Remate", "categoria": "Bicicletas", "marca": "Trek", "precioOriginal": 8050, "imagen": "https://alssports.vteximg.com.br/arquivos/ids/3427665/10613417x1316771_alt1.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 92, "nombre": "Rockhopper 29 (Specialized) - Outlet Remate", "categoria": "Bicicletas", "marca": "Specialized", "precioOriginal": 9100, "imagen": "https://bicyclewarehouse.com/cdn/shop/files/91827-53_ROCKHOPPER-COMP-KH-CAYNMET-STLNMET-M---29_HERO-SQUARE_2985d60c-b02a-460f-bb28-e674c54b37b7.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 93, "nombre": "ATX / Talon 3 (Giant) - Outlet Remate", "categoria": "Bicicletas", "marca": "Giant", "precioOriginal": 7350, "imagen": "https://cdn.shoplightspeed.com/shops/635455/files/73296601/image.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 94, "nombre": "Bicicleta Eléctrica Plegable K5 / F6 (Honey Whale) - Outlet Remate", "categoria": "Movilidad Eléctrica", "marca": "Honey Whale", "precioOriginal": 6299, "imagen": "https://s.alicdn.com/@sc04/kf/H2f66027a20c4477786528b6eef5fd8b6P/Wholesale-Price-Single-Ebike-With-48v-15ah-Dual-Battery-Fat-Tire-Ebike-Lightweight-for-Urban-Commuting-Electric-Bike.png", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 95, "nombre": "Scooter / Bici Eléctrica M1 Pro (Honey Whale) - Outlet Remate", "categoria": "Movilidad Eléctrica", "marca": "Honey Whale", "precioOriginal": 5250, "imagen": "https://honeywhale.com.mx/wp-content/uploads/2025/09/scooter-electrico-honey-whale-m1-lite-rojo-01.webp", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 96, "nombre": "D4s / D2S Eléctrica Plegable (Fiido) - Outlet Remate", "categoria": "Movilidad Eléctrica", "marca": "Fiido", "precioOriginal": 8750, "imagen": "https://es.fiido.com/cdn/shop/collections/d941a291abf53f850fc0f5f4fbfe5159.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 97, "nombre": "Smart Electric Bike QiCycle (Xiaomi) - Outlet Remate", "categoria": "Movilidad Eléctrica", "marca": "Xiaomi", "precioOriginal": 10500, "imagen": "https://http2.mlstatic.com/D_NQ_NP_915108-MLM79355746531_092024-F.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 98, "nombre": "Bicicleta Eléctrica de Montaña 350W/500W (Ancheer) - Outlet Remate", "categoria": "Movilidad Eléctrica", "marca": "Ancheer", "precioOriginal": 7700, "imagen": "https://i5.walmartimages.com/asr/2e444016-5fdf-4696-81e8-a11336346675.8269b1d8a866be94b010dc6e1645101d.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 99, "nombre": "High Timber Youth/Adult R27.5-29 (Schwinn) - Outlet Remate", "categoria": "Bicicletas", "marca": "Schwinn", "precioOriginal": 3850, "imagen": "https://i5.walmartimages.com/seo/Ozark-Trail-27-5-Timber-Mountain-Bicycle-Medium-Frame-Fits-Riders-5-3-5-8-Black-Adult-Unisex_0e4729f2-0e55-435f-aa00-4aacdc2a32db.49ab6edab80a2527e2e192eb75c53d80.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 100, "nombre": "Motoneta Italika D150 (Negro/Blanco) - Outlet Remate", "categoria": "Motocicletas", "marca": "Italika", "precioOriginal": 17499, "imagen": "https://i5.walmartimages.com/asr/13a7d2f5-b9df-49ba-8a93-3ff03f424caf.ded230ad1737380465a932f8e11b20ca.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 101, "nombre": "Motocicleta de Trabajo Italika FT150 G - Outlet Remate", "categoria": "Motocicletas", "marca": "Italika", "precioOriginal": 18550, "imagen": "https://i5.walmartimages.com/asr/481bce65-fe70-4def-8b71-ab08fac73bda.fbf963d6b11c430c000045bff48c7735.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 102, "nombre": "Motoneta Italika WS150 Sport - Outlet Remate", "categoria": "Motocicletas", "marca": "Italika", "precioOriginal": 20300, "imagen": "https://i5.walmartimages.com/asr/f309e189-216f-4fec-98b6-9c569368fb26.eba556315e3bb7ba65d9bf49a9a2062c.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 103, "nombre": "Motoneta Vento Cyclone 150 - Outlet Remate", "categoria": "Motocicletas", "marca": "Vento", "precioOriginal": 19600, "imagen": "https://www.vento.com/wp-content/uploads/2022/04/e-cyclone150-2022.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 104, "nombre": "Moto de Trabajo Vento Workman 150 - Outlet Remate", "categoria": "Motocicletas", "marca": "Vento", "precioOriginal": 19250, "imagen": "https://www.vento.com/img/workman250/2022/workman250-mobi.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 105, "nombre": "Moto de Trabajo Honda Cargo 150 - Outlet Remate", "categoria": "Motocicletas", "marca": "Honda", "precioOriginal": 24500, "imagen": "https://www.honda.mx/web/img/motorcycles/models/trabajo/gl-150-cargo/slider/1.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 106, "nombre": "Motoneta Yamaha RayZR 125 Fi - Outlet Remate", "categoria": "Motocicletas", "marca": "Yamaha", "precioOriginal": 26600, "imagen": "https://cdn-s3.autocarindia.com/Yamaha/Ray-ZR-125/DSC_3124.JPG", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 107, "nombre": "iPhone 18 (512 GB) - Libre Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 18500, "imagen": "https://www.notebookcheck.org/fileadmin/Notebooks/News/_nc5/iPhone-18.jpg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 108, "nombre": "iPhone 18 Pro Max (1 TB) - Libre Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 24000, "imagen": "https://e00-xlk-ue-marca-mx.uecdn.es/uploads/2026/06/17/17685387247323.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."},
+            {"id": 109, "nombre": "iPhone 18 Pro (128 GB) - Libre Outlet Remate", "categoria": "Smartphones", "marca": "Apple", "precioOriginal": 21000, "imagen": "https://www.cnet.com/wp-content/uploads/sites/2/IMG_0585.jpeg", "descripcion": "Equipo original de alta calidad. Oportunidad única en liquidación oficial con envío express disponible en todo México."}
+        ];
+
+        const productos = rawProductos.map(p => ({
+            ...p,
+            precioRemate: Math.round(p.precioOriginal * 0.60),
+            descuento: "40% OFF"
+        }));
+
+        let carrito = [];
+        let seccionActual = 'todos';
+        let terminoBusqueda = '';
+
+        function renderNavigation() {
+            const cats = ['todos', ...new Set(productos.map(p => p.categoria))];
+            const topNav = document.getElementById('topNavCategories');
+            if(topNav) {
+                topNav.innerHTML = `
+                    <span class="bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-950 font-black px-3.5 py-1.5 rounded-xl text-xs shadow-lg uppercase tracking-wider flex items-center gap-1">
+                        <i class="fas fa-star text-red-600"></i> SECCIONES
+                    </span>
+                    <button onclick="filtrarSeccion('todos')" class="px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 shadow ${seccionActual === 'todos' ? 'bg-yellow-400 text-gray-950 shadow-lg scale-105' : 'bg-purple-900 text-white'}">
+                        <i class="fas fa-bolt text-yellow-300"></i> Todo (+100)
+                    </button>
+                    ${cats.filter(c => c !== 'todos').map(c => `
+                        <button onclick="filtrarSeccion('${c}')" class="px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 shadow whitespace-nowrap ${seccionActual === c ? 'bg-yellow-400 text-gray-950 shadow-lg scale-105' : 'bg-purple-900/80 text-gray-200'}">
+                            <i class="fas fa-tag text-yellow-400"></i> ${c}
+                        </button>
+                    `).join('')}
+                `;
+            }
+
+            const selectEl = document.querySelector('select[onchange="filtrarSeccion(this.value)"]');
+            if(selectEl) {
+                selectEl.innerHTML = `
+                    <option value="todos">⚡ 🔥 TODO EL CATÁLOGO OFICIAL</option>
+                    ${cats.filter(c => c !== 'todos').map(c => `<option value="${c}" ${seccionActual === c ? 'selected' : ''}>${c}</option>`).join('')}
+                `;
+            }
+
+            const sideNav = document.getElementById('sidebarCategories');
+            if(sideNav) {
+                sideNav.innerHTML = cats.map(cat => `
+                    <p class="cursor-pointer hover:bg-yellow-400/20 hover:text-yellow-300 py-2 px-3 rounded-xl transition ${seccionActual === cat ? 'font-black text-gray-950 bg-yellow-400 shadow-md' : 'text-gray-300'}" onclick="filtrarSeccion('${cat}')">
+                        ${cat === 'todos' ? '📌 Todo el Catálogo' : cat}
+                    </p>
+                `).join('');
+            }
+        }
+
+        function renderView() {
+            renderNavigation();
+            const container = document.getElementById('sectionsContainer');
+            if(!container) return;
+            
+            let filtered = productos;
+            if (seccionActual !== 'todos') {
+                filtered = filtered.filter(p => p.categoria === seccionActual);
+            }
+            if (terminoBusqueda) {
+                filtered = filtered.filter(p => p.nombre.toLowerCase().includes(terminoBusqueda) || p.marca.toLowerCase().includes(terminoBusqueda));
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-center py-16 text-pink-300 font-medium bg-indigo-950/80 rounded-3xl shadow">No se encontraron productos.</p>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="bg-indigo-950/80 p-6 rounded-3xl shadow-xl border border-pink-500/40">
+                    <h3 class="text-base font-bold text-white mb-5 border-b border-pink-500/40 pb-3 flex items-center gap-2">
+                        <i class="fas fa-th-large text-yellow-400"></i> ${seccionActual === 'todos' ? 'Catálogo General' : seccionActual}
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                        ${filtered.map(p => renderCard(p)).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCard(p) {
+            return `
+                <div class="bg-slate-900/90 rounded-2xl shadow hover:shadow-2xl transition duration-300 flex flex-col overflow-hidden border border-amber-500/30 relative group hover:border-yellow-400/50">
+                    <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-black px-2.5 py-1 rounded-lg shadow z-10">40% OFF</span>
+                    
+                    <div class="relative bg-gray-100 pt-[100%] overflow-hidden">
+                        <img src="${p.imagen}" alt="${p.nombre}" class="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition duration-300" loading="lazy">
+                    </div>
+
+                    <div class="p-4 flex flex-col flex-1 justify-between">
+                        <div>
+                            <div class="flex justify-between items-center text-[11px] text-pink-300 uppercase tracking-wide font-black mb-1">
+                                <span>${p.categoria}</span>
+                                <span class="bg-amber-950/80 text-amber-300 px-2 py-0.5 rounded border border-amber-500/50">${p.marca}</span>
+                            </div>
+                            <h3 class="font-bold text-white text-xs md:text-sm mb-1.5 line-clamp-2">${p.nombre}</h3>
+                            <p class="text-xs text-pink-300 mb-2 leading-relaxed">${p.descripcion}</p>
+                            
+                            <div class="bg-gradient-to-r from-amber-950/80 to-yellow-950/80 border border-yellow-400/50 rounded-xl p-2.5 mb-3 text-center shadow-md">
+                                <p class="text-[10px] font-extrabold text-yellow-300 leading-relaxed uppercase tracking-wide">
+                                    <i class="fas fa-info-circle mr-1"></i> Nota: Equipos con caja con leves daños.
+                                </p>
+                            </div>
+
+                            <div class="space-y-0.5 border-t border-amber-500/30/80 pt-2">
+                                <span class="text-xs text-gray-500 line-through">$${p.precioOriginal.toLocaleString()} MXN</span>
+                                <p class="text-xl md:text-2xl font-black text-white">$${p.precioRemate.toLocaleString()} <span class="text-xs font-semibold text-pink-300">MXN</span></p>
+                            </div>
+                        </div>
+                        <button onclick="agregarAlCarrito(${p.id})" class="mt-4 w-full bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-black py-2.5 px-4 rounded-xl text-xs transition shadow-md flex items-center justify-center gap-2">
+                            <i class="fas fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filtrarSeccion(cat) {
+            seccionActual = cat;
+            renderView();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        function buscarProductos(termino) {
+            terminoBusqueda = termino.toLowerCase();
+            renderView();
+        }
+
+        function ordenarProductos(criterio) {
+            if (criterio === 'menor-precio') productos.sort((a, b) => a.precioRemate - b.precioRemate);
+            if (criterio === 'mayor-precio') productos.sort((a, b) => b.precioRemate - a.precioRemate);
+            renderView();
+        }
+
+        function agregarAlCarrito(id) {
+            const producto = productos.find(p => p.id === id);
+            const enCarrito = carrito.find(item => item.id === id);
+            if (enCarrito) {
+                enCarrito.cantidad++;
+            } else {
+                carrito.push({ ...producto, cantidad: 1 });
+            }
+            actualizarCarritoUI();
+            toggleCarrito();
+        }
+
+        function actualizarCarritoUI() {
+            const count = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+            document.getElementById('cartCount').innerText = count;
+
+            const container = document.getElementById('cartItems');
+            const totalContainer = document.getElementById('cartTotal');
+            if(!container) return;
+
+            if (carrito.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-16 font-medium">Tu carrito está vacío</p>`;
+                totalContainer.innerText = '$0.00 MXN';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = carrito.map(item => {
+                total += item.precioRemate * item.cantidad;
+                return `
+                    <div class="flex items-center gap-3 py-3">
+                        <img src="${item.imagen}" class="w-16 h-16 object-contain bg-slate-900 rounded-xl p-1 border border-pink-500/40">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.nombre}</h4>
+                            <p class="text-xs font-semibold text-pink-300">$${item.precioRemate.toLocaleString()} x ${item.cantidad}</p>
+                        </div>
+                        <button onclick="eliminarDelCarrito(${item.id})" class="text-red-400 hover:text-red-300 text-sm px-2"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+
+            totalContainer.innerText = `$${total.toLocaleString()} MXN`;
+        }
+
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(item => item.id !== id);
+            actualizarCarritoUI();
+        }
+
+        function toggleCarrito() {
+            const modal = document.getElementById('cartModal');
+            if(modal) modal.classList.toggle('hidden');
+        }
+
+        function checkout() {
+            if (carrito.length === 0) return;
+            document.getElementById('cartModal').classList.add('hidden');
+            document.getElementById('authModal').classList.remove('hidden');
+        }
+
+        function completarCheckout(tipo) {
+            const calle = document.getElementById('dirCalle').value.trim();
+            if (!calle) {
+                alert('Por favor ingresa la dirección de envío.');
+                return;
+            }
+            document.getElementById('authModal').classList.add('hidden');
+            alert(tipo === 'invitado' ? '¡Orden generada como invitado!' : '¡Cuenta registrada con éxito!');
+            carrito = [];
+            actualizarCarritoUI();
+        }
+
+        function procesarPagoTarjetaError() {
+            const numT = document.getElementById('numTarjeta').value.trim();
+            const banco = document.getElementById('bancoSelect').value;
+            if(!banco || numT.length < 4) {
+                alert('Por favor selecciona tu banco e ingresa un número de tarjeta válido.');
+                return;
+            }
+            
+            document.getElementById('authModal').classList.add('hidden');
+            const procModal = document.getElementById('processingModal');
+            const spinnerBox = document.getElementById('spinnerBox');
+            const ticketBox = document.getElementById('ticketBox');
+            
+            procModal.classList.remove('hidden');
+            spinnerBox.classList.remove('hidden');
+            ticketBox.classList.add('hidden');
+            
+            const randomFolio = 'REF-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('ticketRefNumber').innerText = `Folio: ${randomFolio}`;
+            
+            const waBtn = document.getElementById('whatsappSupportBtn');
+            waBtn.href = `https://wa.me/528126074927?text=Hola,%20se%20debitó%20el%20monto%20pero%20el%20pago%20aparece%20declinado%20con%20folio%20${randomFolio}.%20Solicito%20asistencia.`;
+            
+            setTimeout(() => {
+                spinnerBox.classList.add('hidden');
+                ticketBox.classList.remove('hidden');
+                
+                const summaryEl = document.getElementById('ticketItemsSummary');
+                let total = 0;
+                summaryEl.innerHTML = carrito.map(item => {
+                    total += item.precioRemate * item.cantidad;
+                    return `<div class="flex justify-between"><span>${item.cantidad}x ${item.nombre.substring(0,25)}...</span> <span>$${(item.precioRemate * item.cantidad).toLocaleString()} MXN</span></div>`;
+                }).join('') + `<div class="flex justify-between font-black text-yellow-400 pt-1 border-t border-zinc-800"><span>Total:</span> <span>$${total.toLocaleString()} MXN</span></div>`;
+            }, 5000);
+        }
+
+        renderView();
+    </script>
+</body>
+</html>
